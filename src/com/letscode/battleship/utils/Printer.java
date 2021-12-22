@@ -9,7 +9,7 @@ public class Printer {
     
     }
     
-    private static void printLine(int length){
+    public static void printLine(int length){
         String line = "";
         for(int i = 0; i < length; i++){
             line += '-';
