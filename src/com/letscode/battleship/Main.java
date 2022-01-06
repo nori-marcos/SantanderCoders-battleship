@@ -1,32 +1,54 @@
 package com.letscode.battleship;
 
+import com.letscode.battleship.utils.*;
 
-import com.letscode.battleship.utils.Printer;
-
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int gameBoardLength = 10;
-        char water = '-';
-        char ship = 'N';
-        char hit = '*';
-        char miss = '-';
-        int shipNumber = 3;
+        Printer.startGame();
+        String playerName = GameScanner.enterName();
 
-        char[][] gameBoard = generateGameBoard(gameBoardLength, ship, shipNumber, water);
+        Printer.greetings(playerName);
 
-        Printer.printGame("Player",gameBoard);
+        int shipNumber = GameScanner.enterShipNumber();
 
+        GameBoardPlayer playerGameBoard = new GameBoardPlayer();
+        GameBoardComputer computerGameBoard = new GameBoardComputer();
+
+        Printer.printGame(playerName, computerGameBoard.gameBoard);
+
+        int unknownShipNumber = computerGameBoard.getShipNumber();
+
+        while (unknownShipNumber > 0){
+            int[] guessCoordinates = getUserCoordinates(computerGameBoard.getGameBoardLength());
+
+            char locationViewUpdate = computerGameBoard.evaluateGuessAndGetTarget(guessCoordinates, computerGameBoard.gameBoard, computerGameBoard.getShip(), computerGameBoard.getWater(), computerGameBoard.getHit(), computerGameBoard.getMiss());
+
+            if(locationViewUpdate == computerGameBoard.getHit()){
+                unknownShipNumber--;
+            }
+
+            computerGameBoard.gameBoard = computerGameBoard.updateGameBoard(computerGameBoard.gameBoard, guessCoordinates, locationViewUpdate);
+            Printer.printGame("Computador", computerGameBoard.gameBoard);
+
+        }
+        System.out.println("You won!");
     }
 
-    private static char[][] generateGameBoard(int gameBoardLength, char ship, int shipNumber, char water) {
-        char[][] gameBoard = new char[gameBoardLength][gameBoardLength];
+    private static int[]getUserCoordinates(int gameBoardLength){
+        int row;
+        int col;
+        do{
+            System.out.print("Row: ");
+            row = new Scanner(System.in).nextInt();
+        }while (row < 0 || row > gameBoardLength + 1);
 
-        for (char[] row : gameBoard){
-            Arrays.fill(row,water);
-        }
+        do{
+            System.out.print("Col: ");
+            col = new Scanner(System.in).nextInt();
+        }while (col < 0 || row > gameBoardLength + 1);
 
-        return gameBoard;
+        return new int[]{row - 1, col - 1};
     }
 }

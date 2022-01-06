@@ -1,12 +1,18 @@
 package com.letscode.battleship.utils;
 
 public class Printer {
-    
+
+    public static void startGame(){
+        System.out.println("Hi! Let's play battleship!");
+    }
+
+    public static void greetings(String playerName){
+        System.out.println("Nice to meet you " + playerName + "!!!");
+    }
+
     public static void printGame(String player, char[][] gameBoard){
-    
         printPlayer(player);
         printGameBoard(gameBoard);
-    
     }
     
     public static void printLine(int length){

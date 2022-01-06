@@ -15,6 +15,7 @@ public class Teste {
 
         char[][] gameBoard = createGameBoard(gameBoardLength, water, ship, shipNumber);
         printGameBoard(gameBoard, water, ship);
+
         int undectedShipNumber = shipNumber;
 
         while (undectedShipNumber > 0){
@@ -123,5 +124,4 @@ public class Teste {
         }
         return coordinates;
     }
-
 }
