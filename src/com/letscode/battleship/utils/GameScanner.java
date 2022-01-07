@@ -16,14 +16,12 @@ public class GameScanner {
     }
 
     public static int[]getUserCoordinates(int gameBoardLength){
-        int row;
+        int row = 0;
         int col;
         do{
             System.out.print("Row: ");
 
             String rowAlphabet = new Scanner(System.in).next().toUpperCase();
-
-            row = 0;
 
             switch (rowAlphabet) {
                 case "A":
@@ -63,7 +61,7 @@ public class GameScanner {
         do{
             System.out.print("Col: ");
             col = new Scanner(System.in).nextInt();
-        }while (col < 0 || row > gameBoardLength + 1);
+        } while (col < 0 || col > gameBoardLength + 1);
 
         return new int[]{row, col};
     }

@@ -16,27 +16,28 @@ public class Main {
         GameBoardComputer computerGameBoard = new GameBoardComputer();
 
 
-        Printer.printGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
+
+        Printer.printGame("Computer", computerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
 
 //        Printer.printGame("Computer", computerGameBoard.gameBoard);
 
 
+        int playerUnknownShipNumber = playerGameBoard.getShipNumber();
+
+        int computerUnknownShipNumber = computerGameBoard.getShipNumber();
 
 
-
-        int unknownShipNumber = computerGameBoard.getShipNumber();
-
-        while (unknownShipNumber > 0){
+        while (computerUnknownShipNumber > 0){
             int[] guessCoordinates = GameScanner.getUserCoordinates(computerGameBoard.getGameBoardLength());
 
             char locationViewUpdate = computerGameBoard.evaluateGuessAndGetTarget(guessCoordinates, computerGameBoard.gameBoard, computerGameBoard.getShip(), computerGameBoard.getWater(), computerGameBoard.getHit(), computerGameBoard.getMiss());
 
             if(locationViewUpdate == computerGameBoard.getHit()){
-                unknownShipNumber--;
+                computerUnknownShipNumber--;
             }
 
             computerGameBoard.gameBoard = computerGameBoard.updateGameBoard(computerGameBoard.gameBoard, guessCoordinates, locationViewUpdate);
-            Printer.printGame("Computador", computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
+            Printer.printGame("Computer", computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
 
         }
         System.out.println("You won!");
