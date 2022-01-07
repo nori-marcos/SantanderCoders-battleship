@@ -3,7 +3,9 @@ package com.letscode.battleship.utils;
 import java.util.Arrays;
 import java.util.Random;
 
-public class GameBoard {
+import static com.letscode.battleship.utils.GameScanner.enterShipNumber;
+
+abstract class GameBoard {
 
     //the following chars are used to represent different elements in the battleship game.
     private char water = ' ';
@@ -13,10 +15,9 @@ public class GameBoard {
 
     //the following components define the size of the game board
     private int gameBoardLength = 10;
-    private int shipNumber;
+    private int shipNumber = enterShipNumber();
 
     public char[][] gameBoard = generateGameBoard();
-
 
     public char[][] generateGameBoard() {
         char[][] gameBoard = new char[this.gameBoardLength][this.gameBoardLength];
@@ -78,7 +79,4 @@ public class GameBoard {
         return shipNumber;
     }
 
-    public void setShipNumber(int shipNumber) {
-        this.shipNumber = shipNumber;
-    }
 }

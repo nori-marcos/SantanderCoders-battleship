@@ -2,6 +2,9 @@ package com.letscode.battleship.utils;
 
 public class GameBoardComputer extends GameBoard {
 
+    public GameBoardComputer() {
+    }
+
     public static char[][] updateGameBoard(char[][] gameBoard, int[] guessCoordinates, char locationViewUpdate) {
         int row = guessCoordinates[0];
         int col = guessCoordinates[1];

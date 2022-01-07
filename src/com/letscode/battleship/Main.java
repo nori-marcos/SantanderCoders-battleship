@@ -2,26 +2,32 @@ package com.letscode.battleship;
 
 import com.letscode.battleship.utils.*;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Printer.startGame();
-        String playerName = GameScanner.enterName();
+        Printer.welcome();
 
+        String playerName = GameScanner.enterName();
         Printer.greetings(playerName);
 
-        int shipNumber = GameScanner.enterShipNumber();
-
+        Printer.requestPlayerShipNumber();
         GameBoardPlayer playerGameBoard = new GameBoardPlayer();
+
+        Printer.requestComputerShipNumber();
         GameBoardComputer computerGameBoard = new GameBoardComputer();
 
-        Printer.printGame(playerName, computerGameBoard.gameBoard);
+
+        Printer.printGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
+
+//        Printer.printGame("Computer", computerGameBoard.gameBoard);
+
+
+
+
 
         int unknownShipNumber = computerGameBoard.getShipNumber();
 
         while (unknownShipNumber > 0){
-            int[] guessCoordinates = getUserCoordinates(computerGameBoard.getGameBoardLength());
+            int[] guessCoordinates = GameScanner.getUserCoordinates(computerGameBoard.getGameBoardLength());
 
             char locationViewUpdate = computerGameBoard.evaluateGuessAndGetTarget(guessCoordinates, computerGameBoard.gameBoard, computerGameBoard.getShip(), computerGameBoard.getWater(), computerGameBoard.getHit(), computerGameBoard.getMiss());
 
@@ -30,25 +36,10 @@ public class Main {
             }
 
             computerGameBoard.gameBoard = computerGameBoard.updateGameBoard(computerGameBoard.gameBoard, guessCoordinates, locationViewUpdate);
-            Printer.printGame("Computador", computerGameBoard.gameBoard);
+            Printer.printGame("Computador", computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
 
         }
         System.out.println("You won!");
     }
 
-    private static int[]getUserCoordinates(int gameBoardLength){
-        int row;
-        int col;
-        do{
-            System.out.print("Row: ");
-            row = new Scanner(System.in).nextInt();
-        }while (row < 0 || row > gameBoardLength + 1);
-
-        do{
-            System.out.print("Col: ");
-            col = new Scanner(System.in).nextInt();
-        }while (col < 0 || row > gameBoardLength + 1);
-
-        return new int[]{row - 1, col - 1};
-    }
 }
