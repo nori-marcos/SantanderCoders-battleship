@@ -7,7 +7,7 @@ public class Printer {
     }
 
     public static void nameCompliment(String playerName){
-        System.out.println(playerName + ", heh?! That is a cool name!!!");
+        System.out.println(playerName + ", heh?! What a cool name!");
     }
 
     public static void requestPlayerShipNumber(){
@@ -22,9 +22,14 @@ public class Printer {
         System.out.println("Let's place your ships on the game board.");
     }
 
-    public static void printGame(String player, char[][] gameBoard, char water, char ship){
+    public static void printPlayerGame(String player, char[][] gameBoard, char water, char ship){
         printPlayer(player);
-        printGameBoard(gameBoard, water, ship);
+        printPlayerBoard(gameBoard, water, ship);
+    }
+
+    public static void printComputerGame(char[][] gameBoard, char water, char ship){
+        printPlayer("Computer");
+        printComputerBoard(gameBoard, water, ship);
     }
     
     public static void printLine(int length){
@@ -41,7 +46,73 @@ public class Printer {
         printLine(45);
     }
 
-    private static void printGameBoard(char[][] gameBoard, char water, char ship){
+    private static void printComputerBoard(char[][] gameBoard, char water, char ship){
+        System.out.print("|   ");
+
+        for (int i = 0; i < gameBoard.length; i++){
+            System.out.print("| " + i + " ");
+        }
+
+        System.out.println("|");
+
+        printLine(45);
+
+        for(int row = 0; row < gameBoard.length; row++){
+
+            switch (row){
+                case 0:
+                    System.out.print("| A ");
+                    break;
+                case 1:
+                    System.out.print("| B ");
+                    break;
+                case 2:
+                    System.out.print("| C ");
+                    break;
+                case 3:
+                    System.out.print("| D ");
+                    break;
+                case 4:
+                    System.out.print("| E ");
+                    break;
+                case 5:
+                    System.out.print("| F ");
+                    break;
+                case 6:
+                    System.out.print("| G ");
+                    break;
+                case 7:
+                    System.out.print("| H ");
+                    break;
+                case 8:
+                    System.out.print("| I ");
+                    break;
+                case 9:
+                    System.out.print("| J ");
+                    break;
+            }
+
+            for(int col = 0; col < gameBoard.length; col++) {
+
+                char position = gameBoard[row][col];
+
+//                    System.out.print("| " + position + " ");
+
+                if(position == ship){
+                    System.out.print("| " + water + " ");
+                } else {
+                    System.out.print("| " + position + " ");
+                }
+            }
+
+            System.out.print("|");
+            System.out.print("\n");
+            printLine(45);
+
+        }
+    }
+
+    private static void printPlayerBoard(char[][] gameBoard, char water, char ship){
         System.out.print("|   ");
 
         for (int i = 0; i < gameBoard.length; i++){

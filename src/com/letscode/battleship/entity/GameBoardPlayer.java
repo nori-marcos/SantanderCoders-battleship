@@ -29,12 +29,7 @@ public class GameBoardPlayer extends GameBoard{
 //        }
 //        return gameBoard;
 //
-//
-//
-//
-//
-//
-//
+
         String message;
         int row =guessCoordinates[0];
         int col = guessCoordinates[1];
@@ -52,28 +47,4 @@ public class GameBoardPlayer extends GameBoard{
         System.out.println(message);
         return target;
     }
-
-//    @Override
-//    public char[][] placeShip(char[][] gameBoard, int shipNumber, char water, char ship) {
-//        int placedShips = 0;
-//        int gameBoardLength = gameBoard.length;
-//        int shipIdentification = 1;
-//
-//        while (placedShips < shipNumber) {
-//
-//            Printer.printGame("Your board", gameBoard, water, ship);
-//            System.out.println("Where would you want to position the ship number " + shipIdentification + "?");
-//            shipIdentification++;
-//
-//            int[] shipLocation = getUserCoordinates(gameBoardLength);
-//
-//            char playerShipPlacement = gameBoard[shipLocation[0]][shipLocation[1]];
-//
-//            if (playerShipPlacement == water) {
-//                gameBoard[shipLocation[0]][shipLocation[1]] = ship;
-//                placedShips++;
-//            }
-//        }
-//        return gameBoard;
-//    }
 }

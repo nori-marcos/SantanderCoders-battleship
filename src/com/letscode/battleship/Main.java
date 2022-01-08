@@ -18,8 +18,8 @@ public class Main {
         Printer.requestComputerShipNumber();
         GameBoardComputer computerGameBoard = new GameBoardComputer();
 
-        Printer.printGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
-        Printer.printGame("Computer", computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
+        Printer.printPlayerGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
+        Printer.printComputerGame(computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
         System.out.println("Above you can see the two game boards.");
         System.out.println("To make things easier, we've already positioned your ships.");
         System.out.println("You must have noticed that you can see only the ships positioned on your board. The reason is pretty obvious, isn't it?");
@@ -48,8 +48,8 @@ public class Main {
             playerGameBoard.gameBoard = playerGameBoard.updatePlayerBoard(playerGameBoard.gameBoard, guessCoordinatesByComputer, playerLocationViewUpdate);
             computerGameBoard.gameBoard = computerGameBoard.updateComputerBoard(computerGameBoard.gameBoard, guessCoordinatesByPlayer, computerLocationViewUpdate);
 
-            Printer.printGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
-            Printer.printGame("Computer", computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
+            Printer.printPlayerGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
+            Printer.printComputerGame(computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
 
         }
 
