@@ -6,16 +6,20 @@ public class Printer {
         System.out.println("Hi! Let's play battleship!");
     }
 
-    public static void greetings(String playerName){
-        System.out.println("Nice to meet you dear " + playerName + "!!!");
+    public static void nameCompliment(String playerName){
+        System.out.println(playerName + ", heh?! That is a cool name!!!");
     }
 
     public static void requestPlayerShipNumber(){
-        System.out.print("Please, enter the number of ships you will have: ");
+        System.out.print("Please, enter the number of ships you will have (limit of 100): ");
     }
 
     public static void requestComputerShipNumber(){
-        System.out.print("Enter now how many ships your opponent will have: ");
+        System.out.print("Enter now how many ships your opponent will have (limit of 100): ");
+    }
+
+    public static void requestShipLocation(){
+        System.out.println("Let's place your ships on the game board.");
     }
 
     public static void printGame(String player, char[][] gameBoard, char water, char ship){
@@ -102,6 +106,5 @@ public class Printer {
 
         }
     }
-
 
 }
