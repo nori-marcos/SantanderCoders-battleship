@@ -18,31 +18,34 @@ public class Main {
         Printer.requestComputerShipNumber();
         GameBoardComputer computerGameBoard = new GameBoardComputer();
 
+        //When it receives the number of ships, the program prints the game boards of the player and of the computer.
         Printer.printPlayerGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
         Printer.printComputerGame(computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
-        System.out.println("Above you can see the two game boards.");
-        System.out.println("To make things easier, we've already positioned your ships.");
-        System.out.println("You must have noticed that you can see only the ships positioned on your board. The reason is pretty obvious, isn't it?");
-        System.out.println("In order to hit the computer's hidden boats, you need to give the coordinates of your shots.");
-        System.out.println("Give a letter for the row and a number for the column. So let's get started!!");
+        Printer.printInstructions();
 
-        //This is the logic of this game.
-        int playerUnknownShipNumber = playerGameBoard.getShipNumber();
-        int computerUnknownShipNumber = computerGameBoard.getShipNumber();
+        //Both players start with the number of undetected ships equal the number before set by the player.
+        int playerUndetectedShipNumber = playerGameBoard.getShipNumber();
+        int computerUndetectedShipNumber = computerGameBoard.getShipNumber();
 
-        while (computerUnknownShipNumber > 0 && playerUnknownShipNumber > 0) {
+        //The block of code will repeat as the number of undetected number of the player and of the computer is above zero. The code block is terminated when one of them equals zero.
+        while (computerUndetectedShipNumber > 0 && playerUndetectedShipNumber > 0) {
+
+            //Player' guesses are obtained by scanning.
             int[] guessCoordinatesByPlayer = GameScanner.getUserCoordinates(computerGameBoard.getGameBoardLength());
+
+            //Computer's guesses are generated randomly according to the board game length. This method can generate repeated coordinates.
             int[] guessCoordinatesByComputer = computerGameBoard.generateCoordinates(computerGameBoard.getGameBoardLength());
+
 
             char computerLocationViewUpdate = computerGameBoard.evaluatePlayerGuessAndGetTarget(guessCoordinatesByPlayer, computerGameBoard.gameBoard, computerGameBoard.getShip(), computerGameBoard.getWater(), computerGameBoard.getHit(), computerGameBoard.getMiss());
             char playerLocationViewUpdate = playerGameBoard.evaluateComputerGuessAndGetTarget(guessCoordinatesByComputer, playerGameBoard.gameBoard, playerGameBoard.getShip(), playerGameBoard.getWater(), playerGameBoard.getHit(), playerGameBoard.getMiss());
 
             if(computerLocationViewUpdate == computerGameBoard.getHit()){
-                computerUnknownShipNumber--;
+                computerUndetectedShipNumber--;
             }
 
             if(playerLocationViewUpdate == playerGameBoard.getHit()){
-                playerUnknownShipNumber--;
+                playerUndetectedShipNumber--;
             }
 
             playerGameBoard.gameBoard = playerGameBoard.updatePlayerBoard(playerGameBoard.gameBoard, guessCoordinatesByComputer, playerLocationViewUpdate);
@@ -50,14 +53,13 @@ public class Main {
 
             Printer.printPlayerGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
             Printer.printComputerGame(computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
-
         }
 
-        if(computerUnknownShipNumber == 0) {
+        if(computerUndetectedShipNumber == 0) {
         System.out.println("You won!");
         }
 
-        if (playerUnknownShipNumber == 0){
+        if (playerUndetectedShipNumber == 0){
         System.out.println("Computer won!");
         }
     }

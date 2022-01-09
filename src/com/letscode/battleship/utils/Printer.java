@@ -18,9 +18,17 @@ public class Printer {
         System.out.print("Enter now how many ships your opponent will have (limit of 100): ");
     }
 
-    public static void requestShipLocation(){
-        System.out.println("Let's place your ships on the game board.");
+    public static void printInstructions(){
+        System.out.println("Above you can see the two game boards.");
+        System.out.println("To make things easier, we've already positioned your ships.");
+        System.out.println("You must have noticed that you can see only the ships positioned on your board. The reason is pretty obvious, isn't it?");
+        System.out.println("In order to hit the computer's hidden boats, you need to give the coordinates of your shots.");
+        System.out.println("Give a letter for the row and a number for the column. So let's get started!!");
     }
+
+//    public static void requestShipLocation(){
+//        System.out.println("Let's place your ships on the game board.");
+//    }
 
     public static void printPlayerGame(String player, char[][] gameBoard, char water, char ship){
         printPlayer(player);
