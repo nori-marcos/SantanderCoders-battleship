@@ -15,6 +15,7 @@ public class GameScanner {
         return scan.nextInt();
     }
 
+    //The method get the coordinates by scanning the inputs in the console.
     public static int[]getUserCoordinates(int gameBoardLength){
         int row = 0;
         int col;
@@ -56,7 +57,7 @@ public class GameScanner {
                     break;
             }
 
-        } while (row < 0 || row > gameBoardLength + 1);
+        } while (row > gameBoardLength + 1);
 
         do{
             System.out.print("Col: ");

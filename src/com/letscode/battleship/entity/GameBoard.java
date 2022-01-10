@@ -19,6 +19,7 @@ abstract class GameBoard {
 
     public char[][] gameBoard = generateGameBoard();
 
+    //The method creates a game board with auto placed ships.
     public char[][] generateGameBoard() {
         char[][] gameBoard = new char[this.gameBoardLength][this.gameBoardLength];
         for (char[] row : gameBoard){
@@ -27,6 +28,7 @@ abstract class GameBoard {
         return placeShip(gameBoard, this.shipNumber, this.water, this.ship);
     }
 
+    //The method placeShip is called by generateGameBoard and must find possible locations to position the ships.
     public char[][] placeShip(char[][] gameBoard, int shipNumber, char water, char ship) {
         int placedShips = 0;
         int gameBoardLength = gameBoard.length;
@@ -45,7 +47,7 @@ abstract class GameBoard {
         return gameBoard;
     }
 
-    //The method returns an array of int that wil be used to set the position of an element in the game board
+    //The method returns randomly an array of int that wil be used to set the position of an element in the game board
     public int[] generateCoordinates(int gameBoardLength){
         int[] coordinates = new int[2];
         for (int i = 0; i< coordinates.length; i++){

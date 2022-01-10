@@ -19,7 +19,7 @@ public class Main {
         GameBoardComputer computerGameBoard = new GameBoardComputer();
 
         //When it receives the number of ships, the program prints the game boards of the player and of the computer.
-        Printer.printPlayerGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
+        Printer.printPlayerGame(playerName, playerGameBoard.gameBoard);
         Printer.printComputerGame(computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
         Printer.printInstructions();
 
@@ -55,7 +55,7 @@ public class Main {
             computerGameBoard.gameBoard = computerGameBoard.updateComputerBoard(computerGameBoard.gameBoard, guessCoordinatesByPlayer, computerLocationViewUpdate);
 
             //After each update, the game boards are printed.
-            Printer.printPlayerGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
+            Printer.printPlayerGame(playerName, playerGameBoard.gameBoard);
             Printer.printComputerGame(computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
         }
 

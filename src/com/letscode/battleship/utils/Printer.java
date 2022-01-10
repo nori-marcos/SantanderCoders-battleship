@@ -26,13 +26,9 @@ public class Printer {
         System.out.println("Give a letter for the row and a number for the column. So let's get started!!");
     }
 
-//    public static void requestShipLocation(){
-//        System.out.println("Let's place your ships on the game board.");
-//    }
-
-    public static void printPlayerGame(String player, char[][] gameBoard, char water, char ship){
+    public static void printPlayerGame(String player, char[][] gameBoard){
         printPlayer(player);
-        printPlayerBoard(gameBoard, water, ship);
+        printPlayerBoard(gameBoard);
     }
 
     public static void printComputerGame(char[][] gameBoard, char water, char ship){
@@ -104,8 +100,6 @@ public class Printer {
 
                 char position = gameBoard[row][col];
 
-//                    System.out.print("| " + position + " ");
-
                 if(position == ship){
                     System.out.print("| " + water + " ");
                 } else {
@@ -120,7 +114,7 @@ public class Printer {
         }
     }
 
-    private static void printPlayerBoard(char[][] gameBoard, char water, char ship){
+    private static void printPlayerBoard(char[][] gameBoard){
         System.out.print("|   ");
 
         for (int i = 0; i < gameBoard.length; i++){
@@ -170,13 +164,8 @@ public class Printer {
 
                 char position = gameBoard[row][col];
 
-                    System.out.print("| " + position + " ");
+                System.out.print("| " + position + " ");
 
-//                if(position == ship){
-//                    System.out.print("| " + water + " ");
-//                } else {
-//                    System.out.print("| " + position + " ");
-//                }
             }
 
             System.out.print("|");
