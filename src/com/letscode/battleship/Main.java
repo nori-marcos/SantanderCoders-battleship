@@ -36,10 +36,12 @@ public class Main {
             //Computer's guesses are generated randomly according to the board game length. This method can generate repeated coordinates.
             int[] guessCoordinatesByComputer = computerGameBoard.generateCoordinates(computerGameBoard.getGameBoardLength());
 
-
+            //"Evaluate" methods check the guesses made by the player and the computer. Depending on the situation, the method may return "hit", "water" or "repeated hit". The return is used as reference to update the game board.
             char computerLocationViewUpdate = computerGameBoard.evaluatePlayerGuessAndGetTarget(guessCoordinatesByPlayer, computerGameBoard.gameBoard, computerGameBoard.getShip(), computerGameBoard.getWater(), computerGameBoard.getHit(), computerGameBoard.getMiss());
             char playerLocationViewUpdate = playerGameBoard.evaluateComputerGuessAndGetTarget(guessCoordinatesByComputer, playerGameBoard.gameBoard, playerGameBoard.getShip(), playerGameBoard.getWater(), playerGameBoard.getHit(), playerGameBoard.getMiss());
 
+            //The following conditionals are used to check what has been returned by the previous methods. The number of undetected ships decreases if the target is equal to "hit".
+            //Each instantiated game board has a parameter of "hit".
             if(computerLocationViewUpdate == computerGameBoard.getHit()){
                 computerUndetectedShipNumber--;
             }
@@ -48,13 +50,16 @@ public class Main {
                 playerUndetectedShipNumber--;
             }
 
+            //Both  game boards are updated according to the result of "Evaluate" methods.
             playerGameBoard.gameBoard = playerGameBoard.updatePlayerBoard(playerGameBoard.gameBoard, guessCoordinatesByComputer, playerLocationViewUpdate);
             computerGameBoard.gameBoard = computerGameBoard.updateComputerBoard(computerGameBoard.gameBoard, guessCoordinatesByPlayer, computerLocationViewUpdate);
 
+            //After each update, the game boards are printed.
             Printer.printPlayerGame(playerName, playerGameBoard.gameBoard, playerGameBoard.getWater(), playerGameBoard.getShip());
             Printer.printComputerGame(computerGameBoard.gameBoard, computerGameBoard.getWater(), computerGameBoard.getShip());
         }
 
+        //Final conditionals to check who zeroed the number of undetected ships first .
         if(computerUndetectedShipNumber == 0) {
         System.out.println("You won!");
         }
